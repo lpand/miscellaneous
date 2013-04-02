@@ -3,7 +3,7 @@ import re
 import web
 
 r_tr_state = re.compile(r'"style[0-9]">\s*([0-9]+%|in\s*(traduzione|revisione))')
-url 			 = 'http://www.italiansubs.net/index.php?option=com_barreavanzamento&Itemid=36'
+url	= 'http://www.italiansubs.net/index.php?option=com_barreavanzamento&Itemid=36'
 
 def subs(phenny, input):
 	arg = input.group(2)
@@ -19,7 +19,7 @@ def subs(phenny, input):
 	if page is None:
 		return phenny.reply("Something bad happend")
 
-	index = page.find(arg)
+	index = page.find('nomeserie=%s"' % arg)
 	if index < 0: 
 		return phenny.reply("Nessun episodio in traduzione o revisione")
 
@@ -30,5 +30,5 @@ def subs(phenny, input):
 		subs_reply = "Stato attuale - "+ responce
 	return phenny.reply(subs_reply)
 
-subs.commands = ['subs', 'itasubs', 'itsubs']
-subs.thread		= True
+subs.commands = ['sub', 'itasubs', 'itsubs']
+subs.thread = True
